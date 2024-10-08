@@ -13,6 +13,29 @@ export async function inserirLogin(login) {
     
 }
 
+
+export async function validarLogin(login){
+
+    const comando = `
+    
+    select 
+    id_cadastro id,
+    email,
+    senha
+    from tb_cadastro_adm
+    where email = ? and senha = ?
+
+    `;
+
+    let resposta = await con.query(comando, [login.email, login.senha]);
+
+    let registros = resposta[0][0];
+
+    return registros;
+
+}
+
+
 export async function consultarLogin() {
   const comando = ` 
   select id_cadastro id,
