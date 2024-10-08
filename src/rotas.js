@@ -1,7 +1,7 @@
-import cadastroController from './controller/cadastroController.js'
+import loginController from './controller/loginController.js'
 
 export default function adicionarRotas(servidor){
 
-servidor.use(cadastroController);
+servidor.use(loginController);
 
 }

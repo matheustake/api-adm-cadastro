@@ -1,12 +1,12 @@
-import * as db from '../repository/cadastroRepository.js';
+import * as db from '../repository/loginRepository.js';
 
-import { Router } from "express"
+import { Router } from 'express';
 const endpoints = Router();
 
-endpoints.get('/cadastro', async (req,resp) =>{
+endpoints.get('/login', async (req,resp) =>{
 
 try {
-    let registros = await db.consultarCadastro();
+    let registros = await db.consultarLogin();
     resp.send(registros)
 } 
 
@@ -18,12 +18,12 @@ catch (error) {
 }
 })
 
-endpoints.post('/cadastro/', async (req, resp) => {
+endpoints.post('/login', async (req, resp) => {
 
 try {
     
 let login = req.body
-let id = db.inserirCadastro(login);
+let id = db.inserirLogin(login);
 
 
 resp.send({
@@ -38,7 +38,7 @@ resp.send({
 }
 })
 
-endpoints.put('/cadastro/:id', async (req, resp) =>{
+endpoints.put('/login/:id', async (req, resp) =>{
 
 try {
 
@@ -46,7 +46,7 @@ try {
     let id = req.params.id;
     
     
-    let linhasAfetadas = await db.alterarCadastro(login, id);
+    let linhasAfetadas = await db.alterarLogin(login, id);
     if (linhasAfetadas >= 1) {
         resp.send();
     }
@@ -62,11 +62,11 @@ try {
 }
 })
 
-endpoints.delete('/cadastro/:id', async (req, resp) => {
+endpoints.delete('/login/:id', async (req, resp) => {
     try {
         let id = req.params.id;
 
-        let linhasAfetadas = await db.deletarCadastro(id);
+        let linhasAfetadas = await db.deletarLogin(id);
         if (linhasAfetadas >= 1) {
             resp.send();
         }

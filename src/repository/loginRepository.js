@@ -1,6 +1,6 @@
 import con from './connection.js';
 
-export async function inserirCadastro(login) {
+export async function inserirLogin(login) {
     const comando = `
     INSERT INTO tb_cadastro_adm(email, senha)
     values( ? , ?)
@@ -10,9 +10,10 @@ export async function inserirCadastro(login) {
     let info = resposta[0];
 
     return info.insertId;
+    
 }
 
-export async function consultarCadastro (id, login) {
+export async function consultarLogin() {
   const comando = ` 
   select id_cadastro id,
   email  email,
@@ -26,7 +27,7 @@ export async function consultarCadastro (id, login) {
   return registros;
 }
 
-export async function alterarCadastro (login, id) {
+export async function alterarLogin(login, id) {
     const comando = `
 
     update tb_cadastro_adm 
@@ -41,7 +42,7 @@ export async function alterarCadastro (login, id) {
     return info.affectedRows;
 }
 
-export async function deletarCadastro (id, login) {
+export async function deletarLogin(id) {
     const comando = ` 
      delete from tb_cadastro_adm
      where id_cadastro = ?
@@ -51,4 +52,5 @@ export async function deletarCadastro (id, login) {
     let info = resposta[0];
 
     return info.affectedRows;
+
 }
